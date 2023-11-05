@@ -126,7 +126,7 @@ function dropdownClick() {
       .html(selText + ' <span class="caret"></span>');
   });
 }
-
+/*
 function setResizableElements() {
   $("#list").resizable();
   $("#list").resize(function () {
@@ -136,7 +136,7 @@ function setResizableElements() {
     triggerResize();
   });
 }
-
+*/
 /*
 function triggerResize() {
   $("#content").width($("#container").width() - $("#list").width());

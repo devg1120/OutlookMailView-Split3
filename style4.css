@@ -1,4 +1,4 @@
-/*
+/**/
     DEMO STYLE
 */
 
@@ -16,7 +16,7 @@ body {
 
 body {
  margin : 0px;
- overflow: hidden;  /* GS*/
+ padding: 0;
 }
 
 .wrapper {
@@ -316,7 +316,7 @@ nav#sidebar.active .bottom li a {
   max-width: 1000px;
   background: #fff;
   border-right: 1px solid #e6e6e6;
-  overflow: hidden;
+  overflow: hidden; 
 }
 
 #content {
@@ -407,6 +407,7 @@ ul.mail_items {
   margin-top: 0px;
   height: 100%; 
   overflow: auto;
+
 }
 
 ul.mail_items li {
@@ -428,7 +429,8 @@ ul.mail_items .header {
 ul.mail_items .item {
   padding-top: 15px;
   padding-bottom: 15px;
-  height: 83px;
+  /* height: 83px; */
+  height: 53px;         /* List item height GS */
   padding-right: 0px;
   padding-left: 10px;
 }
@@ -508,12 +510,13 @@ ul.mail_items .mail_info {
 }
 
 ul.mail_items::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
   background-color: #ffffff;
 }
 
 ul.mail_items::-webkit-scrollbar-thumb {
-  background-color: #c5c5c5;
+  /* background-color: #c5c5c5;*/
+  background-color: #0080ff;
 }
 
 .gutter {
