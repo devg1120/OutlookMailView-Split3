@@ -1,23 +1,6 @@
 
 import SplitView from "./splitview.js";
 
-/*
-$(document).ready(function() {
-    loadData(sampleMailData);
-    sidebarCollapseClick();
-    dropdownClick();
-    hoverMailActionButtons();
-    bindMailListItemClick();
-    bindEscKey();
-    
-    //$('ul.mail_items li.item ').eq(0).click();
-});
-*/
-/*
-$(function() {
-    setResizableElements();
-});
-*/
 
 let $ = function (para) {
   return document.querySelector(para);
@@ -25,8 +8,8 @@ let $ = function (para) {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-     var   splitview = new SplitView(); // GS
-     splitview.activate(document.getElementById("main-container"));   // GS
+  var   splitview = new SplitView(); // GS
+  splitview.activate(document.getElementById("main-container"));   // GS
 
 
   loadData(sampleMailData);
@@ -36,78 +19,11 @@ document.addEventListener("DOMContentLoaded", function () {
   bindMailListItemClick();
   //bindEscKey();
 
-/*
-  // Query the element
-  const resizer = document.getElementById("dragMe");
-  const leftSide = resizer.previousElementSibling;
-  const rightSide = resizer.nextElementSibling;
 
-  // The current position of mouse
-  let x = 0;
-  let y = 0;
-  let leftWidth = 0;
-
-  // Handle the mousedown event
-  // that's triggered when user drags the resizer
-  const mouseDownHandler = function (e) {
-    // Get the current mouse position
-    x = e.clientX;
-    y = e.clientY;
-    leftWidth = leftSide.getBoundingClientRect().width;
-
-    // Attach the listeners to document
-    document.addEventListener("mousemove", mouseMoveHandler);
-    document.addEventListener("mouseup", mouseUpHandler);
-  };
-
-  const mouseMoveHandler = function (e) {
-
-    // How far the mouse has been moved
-    const dx = e.clientX - x;
-    const dy = e.clientY - y;
-
-    const newLeftWidth =
-      ((leftWidth + dx) * 100) /
-      resizer.parentNode.getBoundingClientRect().width;
-    leftSide.style.width = newLeftWidth + "%";
-
-    resizer.style.cursor = "col-resize";
-    document.body.style.cursor = "col-resize";
-
-    leftSide.style.userSelect = "none";
-    leftSide.style.pointerEvents = "none";
-
-    rightSide.style.userSelect = "none";
-    rightSide.style.pointerEvents = "none";
-  };
-
-  const mouseUpHandler = function () {
-    resizer.style.removeProperty("cursor");
-    document.body.style.removeProperty("cursor");
-
-    leftSide.style.removeProperty("user-select");
-    leftSide.style.removeProperty("pointer-events");
-
-    rightSide.style.removeProperty("user-select");
-    rightSide.style.removeProperty("pointer-events");
-
-    // Remove the handlers of mousemove and mouseup
-    document.removeEventListener("mousemove", mouseMoveHandler);
-    document.removeEventListener("mouseup", mouseUpHandler);
-  };
-
-  // Attach the handler
-  resizer.addEventListener("mousedown", mouseDownHandler);
-  */
 });
 
 function bindMailListItemClick() {
-  /*
-    $('ul.mail_items li').click(function() {
-        highlightMailListItem(this);  
-        loadMailItem(this);
-    });
-    */
+
   const highlightedItems = document.querySelectorAll("ul.mail_items li");
 
   highlightedItems.forEach((userItem) => {
@@ -132,71 +48,28 @@ function loadMailItem(listItem) {
   $("#to_name").innerHTML = mail.to;
   $("#mail_body").innerHTML = '<hr>' + mail.summary + '<hr>';
 
-
-    var strAttachmentsHtml = '';
-    for (let i = 0; i < mail.attachments.length; i++) {
+  var strAttachmentsHtml = '';
+  for (let i = 0; i < mail.attachments.length; i++) {
                     //<img class="attachment_image" src="./img/file_images/{{ATTACHMENT_TYPE}}.svg" onError="this.onerror=null;this.src=\'./img/file_images/file.svg\'"/>\
                     //<img class="attachment_image" src="./img/file_images/{{ATTACHMENT_TYPE}}.svg" onError="console.log(\'img load error: {{ATTACHMENT_TYPE}}.svg \');"/>\
-        strAttachmentsHtml += '\
-            <li>\
-                <a href="#">\
-                    <div class="attachment_info">\
-                    <img class="attachment_image" src="./img/file_images/{{ATTACHMENT_TYPE}}.svg" onError="this.onerror=null;this.src=\'./img/file_images/file.svg\'"/>\
-                        <span>{{ATTACHMENT_NAME}}</span>\
-                        <span>{{ATTACHMENT_SIZE}}</span>\
-                    </div>\
-                </a>\
-            </li>'
-            .replace(/{{ATTACHMENT_TYPE}}/g, mail.attachments[i].name.split('.').pop())
-            .replace('{{ATTACHMENT_NAME}}', mail.attachments[i].name)
-            .replace('{{ATTACHMENT_SIZE}}', mail.attachments[i].size);
+     strAttachmentsHtml += '\
+     <li>\
+         <a href="#">\
+             <div class="attachment_info">\
+             <img class="attachment_image" src="./img/file_images/{{ATTACHMENT_TYPE}}.svg" onError="this.onerror=null;this.src=\'./img/file_images/file.svg\'"/>\
+                 <span>{{ATTACHMENT_NAME}}</span>\
+                 <span>{{ATTACHMENT_SIZE}}</span>\
+             </div>\
+         </a>\
+     </li>'
+     .replace(/{{ATTACHMENT_TYPE}}/g, mail.attachments[i].name.split('.').pop())
+     .replace('{{ATTACHMENT_NAME}}', mail.attachments[i].name)
+     .replace('{{ATTACHMENT_SIZE}}', mail.attachments[i].size);
     }
-
-//    console.log(strAttachmentsHtml);
 
     if (mail.attachments.length > 0) {
       $('#mail_attachments').innerHTML =  '<ul>' + strAttachmentsHtml + '</ul>' ;
-      //$('.mail_content').show();                                                                                            
     }
-
-
-  //$('#mail_sender_image').css('background-color', senderColor);
-  //$('#mail_sender_image_span').text(senderImage);
-  //$('#mail_subject').text(mail.subject);
-  //$('#mail_sender_name').text(mail.from);
-  //$('#mail_send_date').text(mail.sentDate);
-  //$('#to_name').text(mail.to);
-  //$('#mail_body').html(mail.summary);
-
-  //var senderImage = listItem.data('sender-image');
-  //var senderColor = listItem.data('sender-color');
-  /*
-    $('#mail_sender_image').css('background-color', senderColor);
-    $('#mail_sender_image_span').text(senderImage);
-    $('#mail_subject').text(mail.subject);
-    $('#mail_sender_name').text(mail.from);
-    $('#mail_send_date').text(mail.sentDate);
-    $('#to_name').text(mail.to);
-    $('#mail_body').html(mail.summary);
-    var strAttachmentsHtml = '';
-    for (let i = 0; i < mail.attachments.length; i++) {
-        strAttachmentsHtml += '\
-            <li>\
-                <a href="#">\
-                    <img class="attachment_image" src="./img/file_images/{{ATTACHMENT_TYPE}}.svg" onError="this.onerror=null;this.src=\'./img/file_images/file.svg\'"/>\
-                    <div class="attachment_info">\
-                        <span>{{ATTACHMENT_NAME}}</span>\
-                        <span>{{ATTACHMENT_SIZE}}</span>\
-                    </div>\
-                </a>\
-            </li>'
-            .replace('{{ATTACHMENT_TYPE}}', mail.attachments[i].name.split('.').pop())
-            .replace('{{ATTACHMENT_NAME}}', mail.attachments[i].name)
-            .replace('{{ATTACHMENT_SIZE}}', mail.attachments[i].size);
-    }
-    $('#mail_attachments').html(mail.attachments.length > 0 ? '<ul>' + strAttachmentsHtml + '</ul>' : '');
-    $('.mail_content').show(); 
-    */
 }
 
 function highlightMailListItem(listItem) {
@@ -207,7 +80,6 @@ function highlightMailListItem(listItem) {
   }
 
   listItem.classList.add("selected");
-  //$(listItem).classList.remove('selected');
 }
 
 function bindEscKey() {
@@ -219,13 +91,7 @@ function bindEscKey() {
 }
 
 function sidebarCollapseClick() {
-	/*
-  $("#sidebarCollapse").on("click", function () {
-    $("#sidebar").toggleClass("active");
-    $("#sidebar .navMenuText").fadeToggle(150);
-  });
-  triggerResize();
-  */
+
   const Item = document.querySelector("#sidebarCollapse");
 
   Item.addEventListener("click", () => {
@@ -247,10 +113,8 @@ function sidebarCollapseClick() {
         i.style.display = "none";
       });
     }
-
   });
 
-  //triggerResize();
 }
 
 function dropdownClick() {
@@ -273,9 +137,11 @@ function setResizableElements() {
   });
 }
 
+/*
 function triggerResize() {
   $("#content").width($("#container").width() - $("#list").width());
 }
+*/
 
 function hoverMailActionButtons() {
   $(".item.container").hover(
